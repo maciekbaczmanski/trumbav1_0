@@ -12,7 +12,7 @@ def GPIO_Setup():
 def charge_to_diode(percent):
     GPIO.output(26, False)
     GPIO.output(19, False)
-    GPIO.output(23, False)
+    GPIO.output(13, False)
     GPIO.output(6, False)
     GPIO.output(5, False)
 
