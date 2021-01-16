@@ -64,8 +64,8 @@ while battery_power:
         diodes.change_a_speed(0)
         diodes.change_b_speed(0)
         diodes.a_dir(False)
-        diodes.change_a_speed(50)
-        diodes.change_b_speed(50)
+        diodes.change_a_speed(100)
+        diodes.change_b_speed(100)
         time.sleep(3)
         diodes.a_dir(True)
 
