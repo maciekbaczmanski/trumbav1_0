@@ -46,6 +46,7 @@ BatteryThread = Thread(target=battery_power.run)
 #Start Thread
 # BatteryThread.start()
 client.subscribe("trumba/start")
+client.subscribe("trumba/stop")
 
 while battery_power:
     time.sleep(0.5)
