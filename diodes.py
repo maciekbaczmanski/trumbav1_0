@@ -16,6 +16,8 @@ def charge_to_diode(percent):
     GPIO.output(6, False)
     GPIO.output(5, False)
 
+    percent = int(percent)
+
     if percent <= 20:
         GPIO.output(26, True)
     elif percent > 20 and percent <= 40:
