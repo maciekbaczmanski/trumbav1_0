@@ -9,7 +9,7 @@ def on_message(client, userdata, message):
     print("message topic=", message.topic)
     diodes.charge_to_diode(str(message.payload.decode("utf-8")))
     message_to_send = "Received charge: " + str(message.payload.decode("utf-8"))
-    client.publish("trumba/charge", message_to_send)
+    client.publish("trumba/charge_confirmation", message_to_send)
 
 
 ########################################
