@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt  # import the client1
-import RPi.GPIO as GPIO
 import diodes
+import battery
+from threading import Thread
 
 
 ############
@@ -27,7 +28,21 @@ client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
 client.connect(broker_address)
 client.loop_start()  # start the loop
 client.subscribe("trumba/charge")  # subskrypcja
-input("press anything to stop")
+power = 100
+#Create Class
+battery_power = battery.battery()
+# FiveSecond = Hello5Program()
+#Create Thread
+BatteryThread = Thread(target=battery_power.run)
+#Start Thread
+BatteryThread.start()
+while True:
+    print(battery_power.power)
+
+
+
+
+# input("press anything to stop")
 
 # client.publish("trumba/charge", "ItsWorkingGuys")
 
