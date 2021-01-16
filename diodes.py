@@ -23,14 +23,14 @@ def GPIO_Setup():
     GPIO.setup(3, GPIO.OUT)  # B2
     washerpwm = GPIO.PWM(21, 1000000)
     washerpwm.start(0.0005)
-    amotor = GPIO.PWM(2, 100000)
-    bmotor = GPIO.PWM(3, 100000)
+    amotor = GPIO.PWM(22, 100000)
+    bmotor = GPIO.PWM(2, 100000)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.IN)
     time.sleep(0.02)
-    GPIO.output(23, False)
-    amotor.start(0)
-    bmotor.start(0)
+    GPIO.output(23, False) # do odl
+    amotor.start(100)
+    bmotor.start(100)
 
 def a_dir(dir):
     if dir:
