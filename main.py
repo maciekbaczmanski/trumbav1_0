@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt  # import the client1
+import RPi.GPIO as GPIO
 import diodes
 
 
@@ -16,7 +17,10 @@ def on_message(client, userdata, message):
 
 diodes.GPIO_Setup()
 # washerpwm = diodes.washerpwm #
-
+diodes.gpioout(4, True)
+diodes.gpioout(17, False)
+diodes.gpioout(27, True)
+diodes.gpioout(22, False)
 broker_address = "192.168.0.180"
 client = mqtt.Client("receiver_trumba")  # create new instance
 client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
@@ -26,13 +30,6 @@ client.subscribe("trumba/charge")  # subskrypcja
 input("press anything to stop")
 
 # client.publish("trumba/charge", "ItsWorkingGuys")
-
-
-
-
-
-
-
 
 
 client.loop_stop()  # stop the loop
