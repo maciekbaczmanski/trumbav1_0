@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+import time
 
 # washerpwm = None
 amotor = None
@@ -25,8 +25,12 @@ def GPIO_Setup():
     washerpwm.start(0.0005)
     amotor = GPIO.PWM(2, 100000)
     bmotor = GPIO.PWM(3, 100000)
-    amotor.start(50)
-    bmotor.start(50)
+    GPIO.setup(23, GPIO.OUT)
+    GPIO.setup(24, GPIO.IN)
+    time.sleep(0.02)
+    GPIO.output(23, False)
+    amotor.start(0)
+    bmotor.start()
 
 
 def gpioout(pin, state):
