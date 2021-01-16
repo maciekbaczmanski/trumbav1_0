@@ -4,17 +4,19 @@ import diodes
 
 ############
 def on_message(client, userdata, message):
-    global messagereceived, message_str
     print("message received ", str(message.payload.decode("utf-8")))
     print("message topic=", message.topic)
-    diodes.charge_to_diode(str(message.payload.decode("utf-8")))
-    message_to_send = "Received charge: " + str(message.payload.decode("utf-8"))
-    client.publish("trumba/charge_confirmation", message_to_send)
+    if message.topic == "trumba/charge":
+        diodes.charge_to_diode(str(message.payload.decode("utf-8")))
+        message_to_send = "Received charge: " + str(message.payload.decode("utf-8"))
+        client.publish("trumba/charge_confirmation", message_to_send)
 
 
 ########################################
 
 diodes.GPIO_Setup()
+washerpwm = diodes.washerpwm #
+washerpwm.start(100.0)
 broker_address = "192.168.0.180"
 client = mqtt.Client("receiver_trumba")  # create new instance
 client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
@@ -24,6 +26,13 @@ client.subscribe("trumba/charge")  # subskrypcja
 input("press anything to stop")
 
 # client.publish("trumba/charge", "ItsWorkingGuys")
+
+
+
+
+
+
+
 
 
 client.loop_stop()  # stop the loop
