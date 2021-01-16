@@ -15,12 +15,12 @@ def GPIO_Setup():
     GPIO.setup(6, GPIO.OUT)  # yellow3
     GPIO.setup(5, GPIO.OUT)  # green
     GPIO.setup(21, GPIO.OUT)  # gąbka
-    GPIO.setup(2, GPIO.OUT)  # APWM
-    GPIO.setup(4, GPIO.OUT)  # A1
-    GPIO.setup(17, GPIO.OUT)  # A2
-    GPIO.setup(3, GPIO.OUT)  # BPWM
-    GPIO.setup(27, GPIO.OUT)  # B1
-    GPIO.setup(22, GPIO.OUT)  # B2
+    GPIO.setup(22, GPIO.OUT)  # APWM
+    GPIO.setup(17, GPIO.OUT)  # A1
+    GPIO.setup(27, GPIO.OUT)  # A2
+    GPIO.setup(2, GPIO.OUT)  # BPWM
+    GPIO.setup(4, GPIO.OUT)  # B1
+    GPIO.setup(3, GPIO.OUT)  # B2
     washerpwm = GPIO.PWM(21, 1000000)
     washerpwm.start(0.0005)
     amotor = GPIO.PWM(2, 100000)
