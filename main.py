@@ -1,13 +1,15 @@
 import paho.mqtt.client as mqtt  # import the client1
 import diodes
 
+
 ############
 def on_message(client, userdata, message):
     global messagereceived, message_str
     print("message received ", str(message.payload.decode("utf-8")))
     print("message topic=", message.topic)
     diodes.charge_to_diode(str(message.payload.decode("utf-8")))
-    client.publish("trumba/charge", ("Received charge: ",str(message.payload.decode("utf-8"))))
+    message_to_send = "Received charge: " + str(message.payload.decode("utf-8"))
+    client.publish("trumba/charge", message_to_send)
 
 
 ########################################
@@ -21,29 +23,7 @@ client.loop_start()  # start the loop
 client.subscribe("trumba/charge")  # subskrypcja
 input("press anything to stop")
 
-
 # client.publish("trumba/charge", "ItsWorkingGuys")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 client.loop_stop()  # stop the loop
