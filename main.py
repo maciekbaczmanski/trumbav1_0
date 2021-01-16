@@ -51,15 +51,15 @@ client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
 
 while battery_power:
-    time.sleep(0.1)
+    time.sleep(0.2)
     diodes.charge_to_diode(battery_power.power)
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
-    # if battery_power.power % 10 == 0:
-    #     if diodes.current_speed_a != battery_power.power:
-    #         diodes.change_a_speed(battery_power.power)
-    #     if diodes.current_speed_b != battery_power.power:
-    #         diodes.change_b_speed(battery_power.power)
+    if battery_power.power % 10 == 0:
+        if diodes.current_speed_a != battery_power.power:
+            diodes.change_a_speed(battery_power.power)
+        if diodes.current_speed_b != battery_power.power:
+            diodes.change_b_speed(battery_power.power)
     if distance_measure.dist < 30:
         diodes.change_a_speed(0)
         diodes.change_b_speed(0)
