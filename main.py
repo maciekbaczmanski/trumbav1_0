@@ -55,8 +55,8 @@ while battery_power:
     diodes.charge_to_diode(battery_power.power)
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
-    diodes.change_a_speed(battery_power.power)
-    diodes.change_b_speed(battery_power.power)
+    diodes.change_a_speed(99)
+    diodes.change_b_speed(99)
     if distance_measure.dist < 30:
         diodes.change_a_speed(0)
         diodes.change_b_speed(0)
