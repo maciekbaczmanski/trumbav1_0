@@ -11,6 +11,8 @@ def on_message(client, userdata, message):
 
 
 ########################################
+
+diodes.GPIO_Setup()
 broker_address = "192.168.0.180"
 client = mqtt.Client("receiver_trumba")  # create new instance
 client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
