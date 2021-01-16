@@ -12,8 +12,8 @@ def GPIO_Setup():
     GPIO.setup(6, GPIO.OUT)    #yellow3
     GPIO.setup(5, GPIO.OUT)    #green
     GPIO.setup(21, GPIO.OUT)    #gąbka
-    washerpwm = GPIO.PWM(21, 500)
-    washerpwm.start(1.0)
+    washerpwm = GPIO.PWM(21, 1000000)
+    washerpwm.start(0.0005)
 
 
 def charge_to_diode(percent):
