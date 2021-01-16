@@ -25,8 +25,8 @@ def GPIO_Setup():
     washerpwm.start(0.0005)
     amotor = GPIO.PWM(2, 100000)
     bmotor = GPIO.PWM(3, 100000)
-    amotor.start(100)
-    bmotor.start(100)
+    amotor.start(50)
+    bmotor.start(50)
 
 
 def gpioout(pin, state):
