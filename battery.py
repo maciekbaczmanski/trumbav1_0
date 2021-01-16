@@ -14,5 +14,5 @@ class battery:
     def run(self):
         global power
         while self._running:
-            time.sleep(5) #Five second delay
-            self.power = self.power - 10
+            time.sleep(1) #Five second delay
+            self.power = self.power - 1

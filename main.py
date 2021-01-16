@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt  # import the client1
 import diodes
 import battery
 from threading import Thread
-
+import time
 
 ############
 def on_message(client, userdata, message):
@@ -12,6 +12,10 @@ def on_message(client, userdata, message):
         diodes.charge_to_diode(str(message.payload.decode("utf-8")))
         message_to_send = "Received charge: " + str(message.payload.decode("utf-8"))
         client.publish("trumba/charge_confirmation", message_to_send)
+    if message.topic == "trumba/start":
+        message_to_send = "Starting!"
+        client.publish("trumba/output", message_to_send)
+        BatteryThread.start()
 
 
 ########################################
@@ -35,9 +39,13 @@ battery_power = battery.battery()
 #Create Thread
 BatteryThread = Thread(target=battery_power.run)
 #Start Thread
-BatteryThread.start()
+# BatteryThread.start()
+client.subscribe("trumba/charge")
+
 while True:
-    print(battery_power.power)
+    time.sleep(0.5)
+    message_to_send = "Power: "+str(battery_power.power)
+    client.publish("trumba/output", message_to_send)
 
 
 
