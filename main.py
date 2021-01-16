@@ -16,6 +16,10 @@ def on_message(client, userdata, message):
         message_to_send = "Starting!"
         client.publish("trumba/output", message_to_send)
         BatteryThread.start()
+    if message.topic == "trumba/stop":
+        message_to_send = "Stopping!"
+        client.publish("trumba/output", message_to_send)
+        battery_power.terminate()
 
 
 ########################################
@@ -43,10 +47,10 @@ BatteryThread = Thread(target=battery_power.run)
 # BatteryThread.start()
 client.subscribe("trumba/start")
 
-while True:
+while battery_power:
     time.sleep(0.5)
     message_to_send = "Power: "+str(battery_power.power)
-    client.publish("trumba/output", message_to_send)
+    client.publish("trumba/power", message_to_send)
 
 
 
