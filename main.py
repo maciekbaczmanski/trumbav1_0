@@ -38,15 +38,15 @@ client.loop_start()  # start the loop
 client.subscribe("trumba/charge")  # subskrypcja
 
 power = 100
-#Create Class
+# Create Class
 battery_power = battery.battery()
 distance_measure = distance.distance()
 # FiveSecond = Hello5Program()
-#Create Thread
-BatteryThread = Thread(target = battery_power.run)
-DistanceThread = Thread(target = distance_measure.run)
+# Create Thread
+BatteryThread = Thread(target=battery_power.run)
+DistanceThread = Thread(target=distance_measure.run)
 DistanceThread.start()
-#Start Thread
+# Start Thread
 client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
 
@@ -55,12 +55,11 @@ while battery_power:
     diodes.charge_to_diode(battery_power.power)
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
-    if battery_power.power %10 == 0:
+    if battery_power.power % 10 == 0:
         if diodes.current_speed_a != battery_power.power:
             diodes.change_a_speed(battery_power.power)
         if diodes.current_speed_b != battery_power.power:
             diodes.change_b_speed(battery_power.power)
-    diodes.change_b_speed(99)
     if distance_measure.dist < 30:
         diodes.change_a_speed(0)
         diodes.change_b_speed(0)
@@ -69,8 +68,6 @@ while battery_power:
         diodes.change_b_speed(50)
         time.sleep(3)
         diodes.a_dir(True)
-
-
 
 # input("press anything to stop")
 
