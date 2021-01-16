@@ -50,7 +50,7 @@ client.subscribe("trumba/stop")
 
 while battery_power:
     time.sleep(0.1)
-    diodes.charge_to_diode(battery_power.power)
+    diodes.charge_to_diode(50)
     message_to_send = "Power: "+str(battery_power.power)
     client.publish("trumba/power", message_to_send)
 
