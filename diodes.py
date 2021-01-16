@@ -43,11 +43,11 @@ def a_dir(dir):
 
 def b_dir(dir):
     if dir:
-        gpioout(4, True)
-        gpioout(3, False)
-    else:
-        gpioout(4, False)
         gpioout(3, True)
+        gpioout(4, False)
+    else:
+        gpioout(3, False)
+        gpioout(4, True)
 
 
 def gpioout(pin, state):
