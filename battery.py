@@ -16,3 +16,4 @@ class battery:
         while self._running:
             time.sleep(1) #Five second delay
             self.power = self.power - 1
+            print(self.power)

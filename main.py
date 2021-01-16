@@ -32,6 +32,7 @@ client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
 client.connect(broker_address)
 client.loop_start()  # start the loop
 client.subscribe("trumba/charge")  # subskrypcja
+
 power = 100
 #Create Class
 battery_power = battery.battery()
@@ -40,7 +41,7 @@ battery_power = battery.battery()
 BatteryThread = Thread(target=battery_power.run)
 #Start Thread
 # BatteryThread.start()
-client.subscribe("trumba/charge")
+client.subscribe("trumba/start")
 
 while True:
     time.sleep(0.5)
