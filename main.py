@@ -3,6 +3,7 @@ import diodes
 import battery
 from threading import Thread
 import time
+import distance
 
 
 def on_message(client, userdata, message):
@@ -16,10 +17,12 @@ def on_message(client, userdata, message):
         message_to_send = "Starting!"
         client.publish("trumba/output", message_to_send)
         BatteryThread.start()
+        DistanceThread.start()
     if message.topic == "trumba/stop":
         message_to_send = "Stopping!"
         client.publish("trumba/output", message_to_send)
         battery_power.terminate()
+        distance_measure.terminate()
 
 
 ########################################
@@ -40,11 +43,12 @@ client.subscribe("trumba/charge")  # subskrypcja
 power = 100
 #Create Class
 battery_power = battery.battery()
+distance_measure = distance.distance()
 # FiveSecond = Hello5Program()
 #Create Thread
-BatteryThread = Thread(target=battery_power.run)
+BatteryThread = Thread(target = battery_power.run)
+DistanceThread = Thread(target = distance_measure.run)
 #Start Thread
-# BatteryThread.start()
 client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
 
