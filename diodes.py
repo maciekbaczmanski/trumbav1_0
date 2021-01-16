@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 
-washerpwm = None
+# washerpwm = None
 
 def GPIO_Setup():
-    global washerpwm
+    # global washerpwm
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(26, GPIO.OUT)    #red
@@ -13,6 +13,7 @@ def GPIO_Setup():
     GPIO.setup(5, GPIO.OUT)    #green
     GPIO.setup(21, GPIO.OUT)    #gąbka
     washerpwm = GPIO.PWM(21, 500)
+    washerpwm.start(100.0)
 
 
 def charge_to_diode(percent):

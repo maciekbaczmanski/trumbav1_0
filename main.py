@@ -15,8 +15,8 @@ def on_message(client, userdata, message):
 ########################################
 
 diodes.GPIO_Setup()
-washerpwm = diodes.washerpwm #
-washerpwm.start(100.0)
+# washerpwm = diodes.washerpwm #
+
 broker_address = "192.168.0.180"
 client = mqtt.Client("receiver_trumba")  # create new instance
 client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
