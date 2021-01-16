@@ -17,7 +17,6 @@ def on_message(client, userdata, message):
         message_to_send = "Starting!"
         client.publish("trumba/output", message_to_send)
         BatteryThread.start()
-        DistanceThread.start()
     if message.topic == "trumba/stop":
         message_to_send = "Stopping!"
         client.publish("trumba/output", message_to_send)
@@ -29,10 +28,8 @@ def on_message(client, userdata, message):
 
 diodes.GPIO_Setup()
 # washerpwm = diodes.washerpwm #
-diodes.gpioout(4, True)
-diodes.gpioout(17, False)
-diodes.gpioout(27, True)
-diodes.gpioout(22, False)
+diodes.a_dir(True)
+diodes.b_dir(True)
 broker_address = "192.168.0.180"
 client = mqtt.Client("receiver_trumba")  # create new instance
 client.on_message = on_message  # Przerwanie przy dostaniu wiadomosci
@@ -48,16 +45,26 @@ distance_measure = distance.distance()
 #Create Thread
 BatteryThread = Thread(target = battery_power.run)
 DistanceThread = Thread(target = distance_measure.run)
+DistanceThread.start()
 #Start Thread
 client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
 
 while battery_power:
-    time.sleep(0.1)
+    time.sleep(0.01)
     diodes.charge_to_diode(battery_power.power)
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
-
+    diodes.change_a_speed(battery_power.power)
+    diodes.change_b_speed(battery_power.power)
+    if distance_measure.dist < 30:
+        diodes.change_a_speed(0)
+        diodes.change_b_speed(0)
+        diodes.a_dir(False)
+        diodes.change_a_speed(50)
+        diodes.change_b_speed(50)
+        time.sleep(3)
+        diodes.a_dir(True)
 
 
 

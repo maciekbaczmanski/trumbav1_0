@@ -30,7 +30,24 @@ def GPIO_Setup():
     time.sleep(0.02)
     GPIO.output(23, False)
     amotor.start(0)
-    bmotor.start()
+    bmotor.start(0)
+
+def a_dir(dir):
+    if dir:
+        gpioout(17, True)
+        gpioout(27, False)
+    else:
+        gpioout(17, False)
+        gpioout(27, True)
+
+
+def b_dir(dir):
+    if dir:
+        gpioout(4, True)
+        gpioout(3, False)
+    else:
+        gpioout(4, False)
+        gpioout(3, True)
 
 
 def gpioout(pin, state):
