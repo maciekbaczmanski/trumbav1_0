@@ -103,7 +103,7 @@ while battery_power:
             diodes.change_a_speed(battery_power.powertospeed)
         if diodes.current_speed_b != battery_power.powertospeed:
             diodes.change_b_speed(battery_power.powertospeed)
-        if actualdist < 30 and abs(actualdist - lastdist) < 50:
+        if actualdist < 30 :
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
@@ -115,7 +115,7 @@ while battery_power:
     if automode:
         diodes.change_a_speed(100)
         diodes.change_b_speed(100)
-        if actualdist < 30 and abs(actualdist - lastdist) < 50:
+        if actualdist < 30 :
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
