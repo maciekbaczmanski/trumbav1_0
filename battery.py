@@ -19,5 +19,6 @@ class battery:
             if self.power > 0:
                 self.power = self.power - 1
             if 10 % self.power == 0:
+                print("hello",self.power)
                 self.powertospeed = self.power
             print(self.power)
