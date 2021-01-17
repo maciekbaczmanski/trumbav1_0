@@ -30,7 +30,6 @@ def on_message(client, userdata, message):
         sportmode = False
         automode = True
 
-
     if message.topic == "Mode/Quit":
         message_to_send = "Stopping!"
         client.publish("trumba/output", message_to_send)
@@ -82,6 +81,7 @@ client.publish("trumba/power", message_to_send)
 lastpower = battery_power.power
 sportmode = False
 automode = False
+lastdist = distance_measure.dist
 while battery_power:
     # print(battery_power.power)
     print(distance_measure.dist)
@@ -97,7 +97,7 @@ while battery_power:
             diodes.change_a_speed(battery_power.power)
         if diodes.current_speed_b != battery_power.powertospeed:
             diodes.change_b_speed(battery_power.power)
-        if distance_measure.dist < 30:
+        if distance_measure.dist < 30 and abs(lastdist - distance_measure.dist) < 10:
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
@@ -105,10 +105,11 @@ while battery_power:
             diodes.change_b_speed(100)
             time.sleep(3)
             diodes.a_dir(True)
+            lastdist = distance_measure.dist
     if automode:
         diodes.change_a_speed(100)
         diodes.change_b_speed(100)
-        if distance_measure.dist < 30:
+        if distance_measure.dist < 30 and abs(lastdist - distance_measure.dist) < 10:
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
@@ -116,6 +117,7 @@ while battery_power:
             diodes.change_b_speed(100)
             time.sleep(3)
             diodes.a_dir(True)
+            lastdist = distance_measure.dist
 
 # input("press anything to stop")
 
