@@ -33,8 +33,12 @@ def GPIO_Setup():
     GPIO.output(23, False) # do odl
     p1 = GPIO.PWM(20, 500)  # GPIO 17 for PWM with 50Hz
     p1.start(99)
+    time.sleep(0.1)
+    p1.ChangeDutyCycle(99)
     p2 = GPIO.PWM(21, 500)  # GPIO 17 for PWM with 50Hz
     p2.start(40)
+    time.sleep(0.1)
+    p2.ChangeDutyCycle(40)
     amotor.start(current_speed_a)
     bmotor.start(current_speed_b)
 
