@@ -6,14 +6,15 @@ amotor = None
 bmotor = None
 current_speed_a = 100
 current_speed_b = 100
-
+p1 = None
+p2 = None
 
 def GPIO_Setup():
-    global amotor, bmotor, current_speed_a, current_speed_b
+    global amotor, bmotor, current_speed_a, current_speed_b, p1,p2
     # global washerpwm
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    GPIO.cleanup()
+
     GPIO.setup(26, GPIO.OUT)  # red
     GPIO.setup(19, GPIO.OUT)  # yellow1
     GPIO.setup(13, GPIO.OUT)  # yellow2
@@ -45,6 +46,10 @@ def GPIO_Setup():
     p1.ChangeDutyCycle(99)
     p2.ChangeDutyCycle(30)
 
+def keepalive():
+    global p1, p2
+    p1.ChangeDutyCycle(99)
+    p2.ChangeDutyCycle(30)
 
 def a_dir(dir):
     if dir:
