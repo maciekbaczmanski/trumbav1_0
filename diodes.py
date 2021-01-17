@@ -26,8 +26,8 @@ def GPIO_Setup():
     GPIO.setup(2, GPIO.OUT)  # BPWM
     GPIO.setup(4, GPIO.OUT)  # B1
     GPIO.setup(3, GPIO.OUT)  # B2
-    GPIO.setup(20, GPIO.OUT)  # p1
-    GPIO.setup(21, GPIO.OUT)  # p2
+    # GPIO.setup(20, GPIO.OUT)  # p1
+    # GPIO.setup(21, GPIO.OUT)  # p2
     amotor = GPIO.PWM(22, 100000)
     bmotor = GPIO.PWM(2, 100000)
     GPIO.setup(23, GPIO.OUT)
@@ -36,20 +36,20 @@ def GPIO_Setup():
     GPIO.setup(24, GPIO.IN)
     time.sleep(0.02)
     GPIO.output(23, False)  # do odl
-    p1 = GPIO.PWM(20, 500)  # GPIO 17 for PWM with 50Hz
-    p1.start(99)
-
-    p2 = GPIO.PWM(21, 500)  # GPIO 17 for PWM with 50Hz
-    p2.start(30)
+    # p1 = GPIO.PWM(20, 500)  # GPIO 17 for PWM with 50Hz
+    # p1.start(99)
+    #
+    # p2 = GPIO.PWM(21, 500)  # GPIO 17 for PWM with 50Hz
+    # p2.start(30)
     time.sleep(0.1)
 
     p1.ChangeDutyCycle(99)
     p2.ChangeDutyCycle(30)
 
-def keepalive():
-    global p1, p2
-    p1.ChangeDutyCycle(99)
-    p2.ChangeDutyCycle(30)
+# def keepalive():
+#     global p1, p2
+#     p1.ChangeDutyCycle(99)
+#     p2.ChangeDutyCycle(30)
 
 def a_dir(dir):
     if dir:
