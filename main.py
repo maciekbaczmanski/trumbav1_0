@@ -34,6 +34,8 @@ def on_message(client, userdata, message):
     if message.topic == "Mode/Quit":
         message_to_send = "Stopping!"
         client.publish("trumba/output", message_to_send)
+        diodes.change_a_speed(0)
+        diodes.change_b_speed(0)
         automode = False
         sportmode = False
         # battery_power.terminate()
