@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
         battery_power.terminate()
         distance_measure.terminate()
         diodes.gpioout(21, True)
-    if message.topic == "Akcelerometr/Down"
+    if message.topic == "Akcelerometr/Down":
         battery_power.add_power(10)
 
 
