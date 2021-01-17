@@ -43,8 +43,8 @@ def GPIO_Setup():
     # p2.start(30)
     time.sleep(0.1)
 
-    p1.ChangeDutyCycle(99)
-    p2.ChangeDutyCycle(30)
+    # p1.ChangeDutyCycle(99)
+    # p2.ChangeDutyCycle(30)
 
 # def keepalive():
 #     global p1, p2
