@@ -6,8 +6,10 @@ amotor = None
 bmotor = None
 current_speed_a = 100
 current_speed_b = 100
+
+
 def GPIO_Setup():
-    global amotor,bmotor, current_speed_a, current_speed_b
+    global amotor, bmotor, current_speed_a, current_speed_b
     # global washerpwm
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -28,19 +30,21 @@ def GPIO_Setup():
     amotor = GPIO.PWM(22, 100000)
     bmotor = GPIO.PWM(2, 100000)
     GPIO.setup(23, GPIO.OUT)
-    GPIO.setup(24, GPIO.IN)
-    time.sleep(0.02)
-    GPIO.output(23, False) # do odl
-    p1 = GPIO.PWM(20, 500)  # GPIO 17 for PWM with 50Hz
-    p1.start(99)
-    time.sleep(0.1)
-    p1.ChangeDutyCycle(99)
-    p2 = GPIO.PWM(21, 500)  # GPIO 17 for PWM with 50Hz
-    p2.start(40)
-    time.sleep(0.1)
-    p2.ChangeDutyCycle(40)
     amotor.start(current_speed_a)
     bmotor.start(current_speed_b)
+    GPIO.setup(24, GPIO.IN)
+    time.sleep(0.02)
+    GPIO.output(23, False)  # do odl
+    p1 = GPIO.PWM(20, 500)  # GPIO 17 for PWM with 50Hz
+    p1.start(99)
+
+    p2 = GPIO.PWM(21, 500)  # GPIO 17 for PWM with 50Hz
+    p2.start(30)
+    time.sleep(0.1)
+
+    p1.ChangeDutyCycle(99)
+    p2.ChangeDutyCycle(30)
+
 
 def a_dir(dir):
     if dir:
@@ -63,15 +67,18 @@ def b_dir(dir):
 def gpioout(pin, state):
     GPIO.output(pin, state)
 
+
 def change_a_speed(speed):
     global amotor, current_speed_a
     current_speed_a = speed
     amotor.ChangeDutyCycle(speed)
 
+
 def change_b_speed(speed):
     global bmotor, current_speed_b
     current_speed_b = speed
     bmotor.ChangeDutyCycle(speed)
+
 
 def charge_to_diode(percent):
     GPIO.output(26, False)
