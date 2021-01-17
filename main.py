@@ -84,8 +84,9 @@ automode = False
 lastdist = distance_measure.dist
 while battery_power:
     # print(battery_power.power)
+    actualdist = distance_measure.dist
     print(distance_measure.dist)
-    time.sleep(0.05)
+    time.sleep(0.3)
     diodes.charge_to_diode(battery_power.power)
     if sportmode:
         if battery_power.power != lastpower:
@@ -97,7 +98,7 @@ while battery_power:
             diodes.change_a_speed(battery_power.power)
         if diodes.current_speed_b != battery_power.powertospeed:
             diodes.change_b_speed(battery_power.power)
-        if distance_measure.dist < 30 :
+        if actualdist < 30 and abs(actualdist - lastdist) < 20:
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
@@ -105,11 +106,11 @@ while battery_power:
             diodes.change_b_speed(100)
             time.sleep(3)
             diodes.a_dir(True)
-            lastdist = distance_measure.dist
+
     if automode:
         diodes.change_a_speed(100)
         diodes.change_b_speed(100)
-        if distance_measure.dist < 30 :
+        if actualdist < 30 and abs(actualdist - lastdist) < 20:
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
             diodes.a_dir(False)
@@ -117,7 +118,7 @@ while battery_power:
             diodes.change_b_speed(100)
             time.sleep(3)
             diodes.a_dir(True)
-            lastdist = distance_measure.dist
+    lastdist = actualdist
 
 # input("press anything to stop")
 
