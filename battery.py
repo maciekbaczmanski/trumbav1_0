@@ -30,3 +30,9 @@ class battery:
 
         if self.power > 100:
             self.power = 100
+        if self.power>50:
+            self.powertospeed = 100
+        elif 20 < self.power <= 50:
+            self.powertospeed = 99
+        elif self.power <= 20:
+            self.powertospeed = 0
