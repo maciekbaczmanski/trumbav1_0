@@ -23,6 +23,8 @@ def on_message(client, userdata, message):
         battery_power.terminate()
         distance_measure.terminate()
         diodes.gpioout(21, True)
+    if message.topic == "Akcelerometr/Down"
+        battery_power.add_power(10)
 
 
 ########################################
@@ -50,6 +52,7 @@ DistanceThread.start()
 # Start Thread
 client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
+client.subscribe("Akcelerometr/Down")
 diodes.gpioout(21,False)
 while battery_power:
     time.sleep(0.2)
