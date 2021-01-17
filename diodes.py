@@ -16,7 +16,6 @@ def GPIO_Setup():
     GPIO.setup(13, GPIO.OUT)  # yellow2
     GPIO.setup(6, GPIO.OUT)  # yellow3
     GPIO.setup(5, GPIO.OUT)  # green
-    GPIO.setup(21, GPIO.OUT)  # gąbka
     GPIO.setup(22, GPIO.OUT)  # APWM
     GPIO.setup(17, GPIO.OUT)  # A1
     GPIO.setup(27, GPIO.OUT)  # A2
