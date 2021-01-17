@@ -18,10 +18,16 @@ class distance:
             GPIO.output(23, False)
             measurement = True
             lastinp = GPIO.input(24)
+            testtime = time.time()
+            error = False
             while measurement:
                 inp = GPIO.input(24)
+                if abs(testtime - time.time()) > 0.1:
+                    error = True
+                    break
                 if inp and not lastinp:
                     start_time = time.time()
+
                 elif lastinp and not inp:
                     end_time = time.time()
                     measurement = False
@@ -31,8 +37,9 @@ class distance:
             # while GPIO.input(24) == 1:
             #     end_time = time.time()
             time.sleep(0.1)
-
-            time1 = end_time - start_time
-            self.dist = 17150 * time1
-
+            if not error:
+                time1 = end_time - start_time
+                self.dist = 17150 * time1
+            else:
+                self.dist = 0
             # print(self.dist)
