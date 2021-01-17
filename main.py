@@ -56,7 +56,6 @@ while battery_power:
     diodes.charge_to_diode(battery_power.power)
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
-    print("aaa")
     if diodes.current_speed_a != battery_power.powertospeed:
         diodes.change_a_speed(battery_power.power)
     if diodes.current_speed_b != battery_power.powertospeed:

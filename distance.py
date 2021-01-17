@@ -22,4 +22,4 @@ class distance:
             time.sleep(0.1)
             time1 = end_time - start_time
             self.dist = 17150 * time1
-            # print(self.dist)
+            print(self.dist)
