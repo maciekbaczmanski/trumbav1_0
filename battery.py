@@ -1,7 +1,6 @@
 import time
 
 
-
 class battery:
 
     def __init__(self):
@@ -15,10 +14,13 @@ class battery:
     def run(self):
         global power
         while self._running:
-            time.sleep(0.5) #Five second delay
+            time.sleep(0.5)  # Five second delay
             if self.power > 0:
                 self.power = self.power - 1
-            self.powertospeed = self.power
+            if 20 < self.power <= 50:
+                self.powertospeed = 99
+            elif self.power <= 20:
+                self.powertospeed = 0
             print(self.power)
 
     def add_power(self, new_power):
