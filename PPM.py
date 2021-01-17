@@ -4,6 +4,8 @@ import time
 servoPIN1 = 21
 servoPIN2 = 20
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.cleanup()
 GPIO.setup(servoPIN1, GPIO.OUT)
 GPIO.setup(servoPIN2, GPIO.OUT)
 p1 = GPIO.PWM(servoPIN1, 500)  # GPIO 17 for PWM with 50Hz
