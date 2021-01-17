@@ -18,8 +18,6 @@ class battery:
             time.sleep(0.5) #Five second delay
             if self.power > 0:
                 self.power = self.power - 1
-            if self.power % 10 == 0:
-                print("hello",self.power)
             self.powertospeed = self.power
             print(self.power)
 
