@@ -11,6 +11,7 @@ def GPIO_Setup():
     # global washerpwm
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
+    GPIO.cleanup()
     GPIO.setup(26, GPIO.OUT)  # red
     GPIO.setup(19, GPIO.OUT)  # yellow1
     GPIO.setup(13, GPIO.OUT)  # yellow2
