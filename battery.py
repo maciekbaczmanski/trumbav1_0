@@ -22,7 +22,7 @@ class battery:
                 self.powertospeed = 99
             elif self.power <= 20:
                 self.powertospeed = 0
-            print(self.power)
+            # print(self.power)
 
     def add_power(self, new_power):
         if self.power < 100:
