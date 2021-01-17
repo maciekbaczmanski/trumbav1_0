@@ -36,6 +36,7 @@ def on_message(client, userdata, message):
         client.publish("trumba/output", message_to_send)
         diodes.change_a_speed(0)
         diodes.change_b_speed(0)
+        battery_power.count = False
         automode = False
         sportmode = False
         # battery_power.terminate()
@@ -82,7 +83,8 @@ lastpower = battery_power.power
 sportmode = False
 automode = False
 while battery_power:
-    print(battery_power.power)
+    # print(battery_power.power)
+    print(distance_measure.dist)
     time.sleep(0.2)
     diodes.charge_to_diode(battery_power.power)
     if sportmode:
