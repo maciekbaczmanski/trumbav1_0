@@ -25,5 +25,8 @@ class battery:
             # print(self.power)
 
     def add_power(self, new_power):
-        if self.power < 100:
-            self.power += new_power
+
+        self.power += new_power
+
+        if self.power > 100:
+            self.power = 100

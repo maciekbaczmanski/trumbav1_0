@@ -43,6 +43,8 @@ def on_message(client, userdata, message):
         diodes.gpioout(21, True)
     if message.topic == "Akcelerometr/Down":
         battery_power.add_power(10)
+        if battery_power.power > 20:
+            diodes.gpioout(21, False)
 
 
 ########################################
@@ -98,9 +100,9 @@ while battery_power:
             lastpower = battery_power.power
 
         if diodes.current_speed_a != battery_power.powertospeed:
-            diodes.change_a_speed(battery_power.power)
+            diodes.change_a_speed(battery_power.powertospeed)
         if diodes.current_speed_b != battery_power.powertospeed:
-            diodes.change_b_speed(battery_power.power)
+            diodes.change_b_speed(battery_power.powertospeed)
         if actualdist < 30 and abs(actualdist - lastdist) < 50:
             diodes.change_a_speed(0)
             diodes.change_b_speed(0)
