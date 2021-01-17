@@ -12,6 +12,7 @@ class distance:
 
     def run(self):
         while self._running:
+
             GPIO.output(23, True)
             time.sleep(0.00001)
             GPIO.output(23, False)
@@ -19,7 +20,7 @@ class distance:
                 start_time = time.time()
             while GPIO.input(24) == 1:
                 end_time = time.time()
-            time.sleep(0.1)
+            time.sleep(0.2)
             time1 = end_time - start_time
             self.dist = 17150 * time1
-            print(self.dist)
+            # print(self.dist)
