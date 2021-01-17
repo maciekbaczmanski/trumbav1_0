@@ -25,8 +25,6 @@ def GPIO_Setup():
     GPIO.setup(3, GPIO.OUT)  # B2
     GPIO.setup(20, GPIO.OUT)  # p1
     GPIO.setup(21, GPIO.OUT)  # p2
-    washerpwm = GPIO.PWM(21, 1000000)
-    washerpwm.start(0.0005)
     amotor = GPIO.PWM(22, 100000)
     bmotor = GPIO.PWM(2, 100000)
     GPIO.setup(23, GPIO.OUT)
