@@ -7,6 +7,7 @@ class battery:
         self.power = 100
         self.powertospeed = 100
         self._running = True
+        self.count = False
 
     def terminate(self):
         self._running = False
@@ -15,7 +16,7 @@ class battery:
         global power
         while self._running:
             time.sleep(0.5)  # Five second delay
-            if self.power > 0:
+            if self.power > 0 and self.count:
                 self.power = self.power - 1
             if 20 < self.power <= 50:
                 self.powertospeed = 99
