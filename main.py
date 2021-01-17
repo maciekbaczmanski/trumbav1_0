@@ -56,6 +56,7 @@ while battery_power:
     message_to_send = str(battery_power.power)
     client.publish("trumba/power", message_to_send)
     if 10 % battery_power.power == 0:
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         if diodes.current_speed_a != battery_power.power:
             diodes.change_a_speed(battery_power.power)
         if diodes.current_speed_b != battery_power.power:
