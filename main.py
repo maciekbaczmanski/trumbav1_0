@@ -88,6 +88,8 @@ while battery_power:
     print(abs(actualdist - lastdist))
     # print(distance_measure.dist)
     time.sleep(0.3)
+    if battery_power.power == 0:
+        diodes.gpioout(21, True)
     diodes.charge_to_diode(battery_power.power)
     if sportmode:
         if battery_power.power != lastpower:
