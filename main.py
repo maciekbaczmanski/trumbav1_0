@@ -104,7 +104,7 @@ while battery_power:
             diodes.a_dir(False)
             diodes.change_a_speed(100)
             diodes.change_b_speed(100)
-            time.sleep(3)
+            time.sleep(1.5)
             diodes.a_dir(True)
 
     if automode:
@@ -116,7 +116,7 @@ while battery_power:
             diodes.a_dir(False)
             diodes.change_a_speed(100)
             diodes.change_b_speed(100)
-            time.sleep(3)
+            time.sleep(1.5)
             diodes.a_dir(True)
     lastdist = actualdist
 
