@@ -22,6 +22,7 @@ def on_message(client, userdata, message):
         client.publish("trumba/output", message_to_send)
         battery_power.terminate()
         distance_measure.terminate()
+        diodes.gpioout(21, True)
 
 
 ########################################
@@ -49,7 +50,7 @@ DistanceThread.start()
 # Start Thread
 client.subscribe("trumba/start")
 client.subscribe("trumba/stop")
-
+diodes.gpioout(21,False)
 while battery_power:
     time.sleep(0.2)
     diodes.charge_to_diode(battery_power.power)
@@ -73,6 +74,6 @@ while battery_power:
 
 # client.publish("trumba/charge", "ItsWorkingGuys")
 
-
+diodes.gpioout(21, True)
 client.loop_stop()  # stop the loop
 client.disconnect(broker_address)
