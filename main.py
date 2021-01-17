@@ -87,8 +87,8 @@ lastdist = distance_measure.dist
 while battery_power:
     # print(battery_power.power)
     actualdist = distance_measure.dist
-    print(abs(actualdist - lastdist))
-    # print(distance_measure.dist)
+    # print(abs(actualdist - lastdist))
+    print(distance_measure.dist)
     time.sleep(0.3)
     if battery_power.power == 0:
         diodes.gpioout(21, True)
