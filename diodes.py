@@ -4,8 +4,8 @@ import time
 # washerpwm = None
 amotor = None
 bmotor = None
-current_speed_a = 100
-current_speed_b = 100
+current_speed_a = 0
+current_speed_b = 0
 p1 = None
 p2 = None
 
